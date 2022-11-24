@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function getComputerChoice(){
+        let rand = Math.floor(Math.random() * 3);
+        if(rand == 0)
+            return "Rock";
+        if(rand == 1){
+            return "Paper";
+        }
+        else{
+            return "Scissors"
+        }
+    }    
+    
+    function playRound(playerSelection, computerSelection){
+        play = playerSelection.toUpperCase();
+        comp = computerSelection.toUpperCase();
+        switch(play){
+            case "ROCK":
+                switch(comp){
+                    case "ROCK":
+                        return "You Tied! Rock ties Rock!";
+                    case "PAPER":
+                        return "You Lose! Paper beats Rock!";
+                    case "SCISSORS":
+                        return "You Win! Rock beats Scissors!";
+                }
+            case "PAPER":
+                switch(comp){
+                    case "ROCK":
+                        return "You Win! Paper beats Rock!";
+                    case "PAPER":
+                        return "You Tie! Paper ties Paper!";
+                    case "SCISSORS":
+                        return "You Lose! Scissors beats Paper!";
+                }
+            case "SCISSORS":
+                switch(comp){
+                    case "ROCK":
+                        return "You Lose! Rock beats Scissors!";
+                    case "PAPER":
+                        return "You Win! Scissors beats Paper!";
+                    case "SCISSORS":
+                        return "You Tie! Scissors ties Scissors!";
+                }
+        }
+    }
+    const player = "rock";
+    const comper = getComputerChoice();
+    console.log(playRound(player, comper));
+</script>
+<body>
+    
+</body>
+</html>
