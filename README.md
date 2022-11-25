@@ -1,1 +1,2 @@
-# odin project - simple rock paper scissors game to practice Javascript
+# 
+odin project - simple rock paper scissors game in console to practice Javascript
