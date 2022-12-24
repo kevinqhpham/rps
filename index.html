@@ -6,7 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<body>
+    <button id="Rock">Rock</button>
+    <button id="Paper">Paper</button>
+    <button id="Scissors">Scissors</button>
+    <div id = "message">Make your choice!</div>
+    <div id = "score">Score: </div>
+</body>
 <script>
+    const mess = document.querySelector("#message");
+    mess.style.backgroundColor = "grey";
+
+    const score = document.querySelector('#score');
+    score.style.backgroundColor = "grey";
+    
     function getComputerChoice(){
         let rand = Math.floor(Math.random() * 3);
         if(rand == 0)
@@ -52,34 +65,57 @@
                 }
         }
     }
-    
+    playerCount = 0;
+    compCount = 0;
+
+    let player = "";
+    let message = "";
     function game(){
-        playerCount = 0;
-        compCount = 0;
-        for(let i = 0; i < 5; i++){
-            let player = prompt("Rock, Paper, or Scissors?").toUpperCase();
-            let computer = getComputerChoice().toUpperCase();
-            const round = playRound(player, computer).split(" ");
-            if(round[1] == "Win!")
-                playerCount++;
-            if(round[1] == "Lose!")
-                compCount++;
-            console.log(round.join(" "));
+
+        let computer = getComputerChoice().toUpperCase();
+        const round = playRound(player, computer).split(" ");
+
+        if(round[1] == "Win!")
+            playerCount++;
+        if(round[1] == "Lose!")
+            compCount++;
+
+        message = round.join(" ");
+
+        mess.textContent = message;
+        score.textContent = "You: " + playerCount + " | Computer: " + compCount;
+        
+        if(playerCount == 5){
+            mess.textContent = "YOU BEAT THE GAME"
+            playerCount = 0;
+            compCount = 0;
         }
-        console.log("Your Wins: " + playerCount);
-        console.log("Computer Wins: " + compCount);
-        if(playerCount > compCount)
-            return "You Win!";
-        if(playerCount == compCount)
-            return "You Tied!";
-        else{
-            return "You Lose!";
+        if(compCount == 5){
+            mess.textContent = "THE COMPUTER BEAT YOUR ASS";
+            playerCount = 0;
+            compCount = 0;
         }
     }
-    console.log(game());
+   
+    const rock = document.querySelector('#Rock');
+    const paper = document.querySelector('#Paper');
+    const scissors = document.querySelector('#Scissors');
+    
+    rock.addEventListener('click', () => {
+        player = "ROCK";
+        game();
+    });
+
+    scissors.addEventListener('click', () => {
+        player = "SCISSORS";
+        game();
+    });
+
+    paper.addEventListener('click', () => {
+        player = "PAPER";
+        game();
+    });
+
     
 </script>
-<body>
-    
-</body>
 </html>
